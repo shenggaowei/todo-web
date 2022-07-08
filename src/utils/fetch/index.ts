@@ -11,8 +11,8 @@ interface IResponse<T> {
   extra: IExtra
 }
 
-export async function GET<R = any>(url: string): Promise<R>
-export async function GET<R = any, P = any>(url: string, params?: P): Promise<R> {
+export async function GET<R = any, P = any>(url: string, params?: P): Promise<R>
+export async function GET<R = any, P = any>(url: string, params: P): Promise<R> {
     const config: AxiosRequestConfig = {
         url,
         method: 'get',
