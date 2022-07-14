@@ -1,5 +1,5 @@
-import Todo from "../pages/todo"
-import Login from '../pages/Login/Login';
+import Todo from "../pages/todo.vue"
+import Login from '../pages/Login/Login.vue';
 
 const routes = [
   { path: '/home', component: Todo },
