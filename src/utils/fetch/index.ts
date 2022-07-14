@@ -11,23 +11,21 @@ interface IResponse<T> {
   extra: IExtra
 }
 
-export async function GET<R = any, P = any>(url: string, params?: P): Promise<R>
-export async function GET<R = any, P = any>(url: string, params: P): Promise<R> {
+export async function GET<R = any, P = any>(url: string, params?: P): Promise<R> {
     const config: AxiosRequestConfig = {
         url,
         method: 'get',
-        params
+        params: params || {}
     }
     const ret = await request<IResponse<R>>(config)
     return ret.data
 }
 
-export async function POST<R = any, D = any>(url: string, data? : D): Promise<R>
-export async function POST<R = any, D = any>(url: string, data: D): Promise<R> {
+export async function POST<R = any, D = any>(url: string, data?: D): Promise<R> {
     const config: AxiosRequestConfig = {
         url,
         method: 'post',
-        data
+        data: data || {}
     }
     const ret = await request<IResponse<R>>(config)
     return ret.data
