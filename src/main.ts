@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
-import { IonicVue } from '@ionic/vue';
-import { createRouter, createWebHashHistory } from '@ionic/vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './router'
 import App from './App.vue'
 
@@ -11,4 +10,4 @@ const router = createRouter({
 
 const app = createApp(App)
 
-app.use(router).use(IonicVue).mount('#app')
+app.use(router).mount('#app')
