@@ -1,5 +1,10 @@
 import { Button } from 'vant'
+import { App } from 'vue'
 
-export const components = [
+const components = [
     Button
 ]
+
+export default (app: App) => {
+    components.forEach(ele => app.use(ele))
+}

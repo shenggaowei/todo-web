@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="box">
-      哈哈哈哈哈哈哈
+       <van-button size="small" type="primary">发送验证码</van-button>
     </div>
   </Layout>
 </template>
