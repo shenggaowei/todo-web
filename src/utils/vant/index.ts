@@ -1,9 +1,12 @@
-import { Button, ActionSheet } from 'vant'
+import { Button, ActionSheet ,Form, Field, CellGroup } from 'vant'
 import { App } from 'vue'
 
 const components = [
     Button,
-    ActionSheet
+    ActionSheet,
+    Form,
+    Field,
+    CellGroup
 ]
 
 export default (app: App) => {

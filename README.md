@@ -2,7 +2,10 @@
 
 ## 框架
 
-- vite + vue3 + typescript + sass
+- vite + vue3 + typescript
+- css module 
 - vue-router
 - axios 请求
-- vuetify ui库
+- vant ui库
+- vueuse
+  - useAsyncState 请求

@@ -22,6 +22,7 @@ export default defineConfig({
     },
   },
   css: {
+    modules: {},
     postcss: {
       plugins: [
         pxToViewport({

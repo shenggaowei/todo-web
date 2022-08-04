@@ -1,21 +1,26 @@
 <template>
-<div class="layout">
-  <slot></slot>
-</div>
+  <div :class="[$style.layout, customClass]">
+    <slot></slot>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  setup() {
+  setup(props, context) {
+    const { class: customClass } = context.attrs
+    return {
+      customClass
+    }
   },
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .layout {
-    width: 100vw;
-    height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100vw;
 }
 </style>

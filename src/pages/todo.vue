@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ITodo } from '@/interface/todo';
 import { ref, onMounted } from 'vue'
-import { signIn } from '@/helpers/api/auth';
 
 const list = ref<ITodo[]>([
   {
@@ -20,13 +19,6 @@ const addTodo = () => {
     id: list.value.length + 1,
     title: `今天要吃${list.value.length + 1}顿饭`,
     checked: false
-  })
-  signIn({
-    userName: '阿高',
-    password: '1234',
-    origin: 'pc'
-  }).then(data => {
-    console.log(data)
   })
 }
 

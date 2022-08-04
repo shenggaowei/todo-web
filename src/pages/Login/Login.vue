@@ -1,51 +1,67 @@
 <template>
   <Layout>
-    <div class="box">
-       <van-button class="$style['button']" size="small" type="primary">发送验证码</van-button>
-       <van-cell is-link title="基础用法" @click="show= true" />
-       <van-action-sheet v-model:show="show" :actions="actions" @select="onSelect" />
+    <div :class="$style.container">
+      <van-form @submit="onSubmit">
+        <van-cell-group inset>
+          <van-field
+            v-model="userInfo.userName"
+            name="username"
+            label="用户名"
+            placeholder="请输入用户名"
+            :rules="[{ required: true, message: '请填写用户名' }]"
+          />
+          <van-field
+            v-model="userInfo.password"
+            type="password"
+            name="password"
+            label="密码"
+            placeholder="请输入密码"
+            :rules="[{ required: true, message: '请填写密码' }]"
+          />
+        </van-cell-group>
+        <div style="margin: 16px;">
+          <van-button round block type="primary" native-type="submit" :disabled="isLoading">
+            提交
+          </van-button>
+        </div>
+      </van-form>
     </div>
   </Layout>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import Layout from '@/components/layout/index.vue'
+import { setStorage } from '@/utils/storage'
+import { useSignIn } from './useService';
 
 export default defineComponent({
   components: {
     Layout
   },
-  setup(props) {
-    const formData = ref<{ phone: string; password: string}>()
-    const show = ref<boolean>(false)
-    const actions = [
-      { name: '选项一' },
-      { name: '选项二' },
-      { name: '选项三' },
-    ];
-    const onSelect = () => {
-      show.value = false;
+  setup() {
+    const router = useRouter() 
+    const userInfo = ref<{ userName: string;  password: string}>({userName: '', password: ''})
+    const { execute, isLoading } = useSignIn(userInfo.value)
+    const onSubmit = async () => {
+      const data = await execute()
+      if (data.token) {
+        setStorage('account', data)
+        router.push('/home')
+      }
     };
     return {
-      formData,
-      show,
-      onSelect,
-      actions
-    }
+      userInfo,
+      onSubmit,
+      isLoading
+    };
   }
-});
+})
 </script>
 
 <style lang="scss" module>
-.box {
-  width: 375px;
-  height: 100px;
-  background: orange;
-  font-size: 18px;
-  color: purple;
-}
-
-button {
+.container {
+  margin-top: 300px;
 }
 </style>
