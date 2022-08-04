@@ -60,7 +60,6 @@ onMounted(() => {
   margin-top: 50px;
   padding: 20px;
   border-radius: 4px;
-  background: orange;
 }
 
 .todo_list {
