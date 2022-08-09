@@ -1,8 +1,8 @@
-const Todo = () => import("../pages/todo.vue")
-const Login = () => import('../pages/Login/Login.vue')
+const Home = () => import("../pages/Home/index.vue")
+const Login = () => import('../pages/Login/index.vue')
 
 const routes = [
-  { path: '/home', component: Todo },
+  { path: '/home', component: Home },
   { path: '/login', component: Login },
 ]
 
