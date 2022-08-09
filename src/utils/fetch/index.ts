@@ -5,10 +5,10 @@ interface IExtra {
 }
 
 interface IResponse<T> {
-  code: number;
-  data: T;
-  message: string;
-  extra: IExtra
+    code: number;
+    data: T;
+    message: string;
+    extra: IExtra
 }
 
 export async function GET<R = any, P = any>(url: string, params?: P): Promise<R> {

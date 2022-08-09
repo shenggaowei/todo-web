@@ -1,7 +1,9 @@
 {
     "cSpell.words": [
+        "pxtorem",
         "unplugin",
         "Vant",
         "vueuse"
-    ]
+    ],
+    "editor.formatOnSave": true
 }

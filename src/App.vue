@@ -3,12 +3,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent} from 'vue'
-import useViewPort from '@/hooks/useViewPort' 
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  setup() {
-    useViewPort()
-  },
-})
+  setup() {},
+});
 </script>

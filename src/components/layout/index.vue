@@ -1,26 +1,38 @@
 <template>
   <div :class="[$style.layout, customClass]">
-    <slot></slot>
+    <slot v-if="isMobile"></slot>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onUnmounted, watchEffect } from "vue";
+import { Dialog } from "vant";
+import "vant/es/dialog/style";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export default defineComponent({
   setup(props, context) {
-    const { class: customClass } = context.attrs
+    const { class: customClass } = context.attrs;
+    const isMobile = useIsMobile();
+    const stopWatch = watchEffect(() => {
+      if (!isMobile.value) {
+        Dialog({ message: "pc端正在开发中，先用手机打开看看" });
+      }
+    });
+    onUnmounted(() => {
+      stopWatch();
+    });
     return {
-      customClass
-    }
+      customClass,
+      isMobile,
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" module>
 .layout {
   margin: 0 auto;
   overflow: hidden;
-  width: 100vw;
 }
 </style>

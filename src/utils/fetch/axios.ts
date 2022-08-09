@@ -4,7 +4,7 @@ import 'vant/es/toast/style';
 
 const instance = axios.create({
   baseURL: 'http://localhost:7001',
-  timeout: 1000,
+  timeout: 3000,
   headers: {}
 })
 
@@ -15,7 +15,7 @@ instance.interceptors.request.use(function (config) {
 });
 
 instance.interceptors.response.use(function (response) {
-  if (response.data.message) {
+  if (response.data.code !== 0) {
     Toast.fail(response.data.message)
   }
   return response;
@@ -24,6 +24,6 @@ instance.interceptors.response.use(function (response) {
 });
 
 export default async function request<T>(config: AxiosRequestConfig): Promise<T> {
-  const ret =  await instance.request(config)
+  const ret = await instance.request(config)
   return ret.data
 }
