@@ -1,1 +1,0 @@
-import{_ as o}from"./index.284774c0.js";import{_ as e,d as n,c as s,w as a,o as _,a as c}from"./index.4f69aa85.js";const r=n({components:{Layout:o},setup(){}}),p=c(" \u6211\u662F\u9996\u9875 ");function u(d,i,f,m,l,x){const t=o;return _(),s(t,null,{default:a(()=>[p]),_:1})}var k=e(r,[["render",u]]);export{k as default};
