@@ -39,6 +39,7 @@ import { useRouter } from "vue-router";
 import Layout from "@/components/layout/index.vue";
 import { setStorage } from "@/utils/storage";
 import { useSignIn } from "./useService";
+import { account_key } from "@/utils/storage";
 
 export default defineComponent({
   components: {
@@ -54,7 +55,7 @@ export default defineComponent({
     const onSubmit = async () => {
       const data = await execute();
       if (data.token) {
-        setStorage("account", data);
+        setStorage(account_key, data);
         router.push("/home");
       }
     };

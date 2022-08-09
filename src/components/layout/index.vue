@@ -9,10 +9,12 @@ import { defineComponent, onUnmounted, watchEffect } from "vue";
 import { Dialog } from "vant";
 import "vant/es/dialog/style";
 import useIsMobile from "@/hooks/useIsMobile";
+import useNavigationGuards from "@/hooks/useNavigationGuards";
 
 export default defineComponent({
   setup(props, context) {
     const { class: customClass } = context.attrs;
+    useNavigationGuards();
     const isMobile = useIsMobile();
     const stopWatch = watchEffect(() => {
       if (!isMobile.value) {
