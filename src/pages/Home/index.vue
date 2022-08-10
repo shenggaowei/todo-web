@@ -1,5 +1,5 @@
 <template>
-  <Layout> 我是首页 </Layout>
+  <Layout> 我是首页哈 </Layout>
   <van-cell title="选择单个日期" :value="date" @click="show = true" />
   <van-calendar v-model:show="show" @confirm="onConfirm" />
 </template>
