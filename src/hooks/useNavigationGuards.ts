@@ -5,7 +5,12 @@ function useNavigationGuards() {
     const route = useRoute()
     const router = useRouter()
     const accountInfo = getAccountInfo<{ token: string }>()
-    const { login: needLogin } = route.matched[0].props?.default as any
+    const currentRouter = route.matched[0]
+    const { login: needLogin } = currentRouter.props?.default as any
+
+    if (!currentRouter.name) {
+        return router.push('/not-found')
+    }
 
     if (route.name === 'login') {
         if (accountInfo?.token) {
@@ -15,12 +20,15 @@ function useNavigationGuards() {
     }
 
     if (!accountInfo?.token && needLogin) {
-        router.push('/login');
-        return
+        return router.push('/login');
     }
 
     onBeforeRouteLeave(async (to, from) => {
-        const { login: needLogin } = to.matched[0]?.props?.default as any
+        const { login: needLogin } = to.matched[0]?.props?.default || {} as any
+
+        if (!to.name) {
+            return { name: "not-found" }
+        }
 
         if (to.name === 'Login') {
             if (accountInfo.token) {
@@ -28,12 +36,10 @@ function useNavigationGuards() {
             }
         }
 
-        if (to)
-            if (!accountInfo?.token && needLogin) {
-                return { name: 'login' }
-            }
-    }
-    )
+        if (!accountInfo?.token && needLogin) {
+            return { name: 'login' }
+        }
+    })
 }
 
 export default useNavigationGuards

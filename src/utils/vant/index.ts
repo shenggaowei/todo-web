@@ -1,4 +1,4 @@
-import { Button, ActionSheet, Form, Field, CellGroup, Dialog, Calendar } from 'vant'
+import { Button, ActionSheet, Form, Field, CellGroup, Dialog, Calendar, Empty } from 'vant'
 import { App } from 'vue'
 
 const components = [
@@ -8,7 +8,8 @@ const components = [
     Field,
     CellGroup,
     Dialog,
-    Calendar
+    Calendar,
+    Empty
 ]
 
 export default (app: App) => {
