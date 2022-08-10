@@ -18,13 +18,8 @@ jobs:
         with:
           node-version: "14"
 
-      - name: Install and Build
+      - name: Install vercel 
         run: |
-          npm install
-          npm run build
+          npm install -g vercel
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: dist 
+        run: vercel
