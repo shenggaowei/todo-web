@@ -1,10 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { Toast } from 'vant';
+import { getHost } from './host';
 import 'vant/es/toast/style';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:7001',
-  timeout: 3000,
+  baseURL: getHost().host,
+  timeout: 30000,
   headers: {}
 })
 

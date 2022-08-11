@@ -5,3 +5,5 @@ import { getStorage } from "@/utils/storage";
 export function getAccountInfo<T = any>(): T {
     return getStorage(account_key) as T
 }
+
+export const isProd = process.env.NODE_ENV === 'production'
