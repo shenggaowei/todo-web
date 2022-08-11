@@ -2,48 +2,49 @@ import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router'
 import { getAccountInfo } from '@/utils'
 
 function useNavigationGuards() {
-    debugger
     const route = useRoute()
     const router = useRouter()
     const accountInfo = getAccountInfo<{ token: string }>() || {}
     const currentRouter = route.matched[0]
     const { login: needLogin } = currentRouter.props?.default as any
+    const isLogin = !!accountInfo.token
+    const isNotFoundRoute = !currentRouter.name
 
-    if (!currentRouter.name) {
-        return router.push('/not-found')
-    }
-
-    if (route.name === 'login') {
-        if (accountInfo?.token) {
+    if (isLogin) {
+        if (route.name === 'login') {
             router.push('/home')
         }
-        return
+    } else {
+        if (needLogin) {
+            router.push('/login')
+        }
     }
 
-    if (!accountInfo?.token && needLogin) {
-        return router.push('/login');
+    if (isNotFoundRoute) {
+        router.push('/not-found')
     }
 
     onBeforeRouteLeave(async (to, from) => {
         const { login: needLogin } = to.matched[0]?.props?.default || {} as any
+        const isNotFoundRoute = !to.name
+        const accountInfo = getAccountInfo<{ token: string }>() || {}
+        const isLogin = !!accountInfo.token
 
-        if (!to.name) {
-            return { name: "not-found" }
-        }
-
-        if (accountInfo.token) {
+        if (isLogin) {
             if (to.name === 'login') {
                 return { name: 'home' }
-            } else {
-                return { name: to.name }
             }
         } else {
             if (needLogin) {
                 return { name: 'login' }
-            } else {
-                return { name: to.name }
             }
         }
+
+        if (isNotFoundRoute) {
+            return { name: 'not-found' }
+        }
+
+        return true
     })
 }
 
