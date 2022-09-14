@@ -1,33 +1,28 @@
 <template>
-  <Layout> 我是首页哈 </Layout>
-  <van-cell title="选择单个日期" :value="date" @click="show = true" />
-  <van-calendar v-model:show="show" @confirm="onConfirm" />
+  <Layout> 我是首页哈 {{ data }} </Layout>
+  <van-button type="primary" @click="decrement">点我-</van-button>
+  <span>{{ data }}</span>
+  <van-button type="primary" @click="increment">点我+</van-button>
+  <panel ref="panel_value" />
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+import { ref, watchEffect } from "vue";
 import Layout from "@/components/layout/index.vue";
+import Panel from "./panel.vue";
 
-export default defineComponent({
-  components: {
-    Layout,
-  },
-  setup() {
-    const date = ref("");
-    const show = ref(false);
+const data = ref<number>(0);
+const panel_value = ref();
 
-    const formatDate = (date: any) =>
-      `${date.getMonth() + 1}/${date.getDate()}`;
-    const onConfirm = (value: any) => {
-      show.value = false;
-      date.value = formatDate(value);
-    };
+const increment = () => {
+  panel_value.value.increment();
+};
 
-    return {
-      date,
-      show,
-      onConfirm,
-    };
-  },
+const decrement = () => {
+  data.value--;
+};
+
+watchEffect(() => {
+  console.log(data.value);
 });
 </script>
