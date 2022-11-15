@@ -1,25 +1,14 @@
-import { useAsyncState } from "@vueuse/core";
+import { useRequest } from "vue-request";
 import { signIn } from "@/service/auth";
-import type { ISignInParams } from '@/service/auth/interface'
 
-type TUseSignInParams = Pick<ISignInParams, 'password' | 'userName'>
+export function useSignIn() {
+  const { run, data, loading } = useRequest(signIn, {
+    manual: true,
+  });
 
-export function useSignIn(params: TUseSignInParams) {
-    const { state, execute, isLoading } = useAsyncState(() => {
-        return signIn({
-            ...params,
-            origin: 'pc'
-        })
-    },
-        {
-            token: ''
-        },
-        {
-            immediate: false
-        })
-    return {
-        state,
-        execute,
-        isLoading
-    }
+  return {
+    run,
+    data,
+    loading,
+  };
 }

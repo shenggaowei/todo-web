@@ -1,9 +1,12 @@
 {
-    "cSpell.words": [
-        "pxtorem",
-        "unplugin",
-        "Vant",
-        "vueuse"
-    ],
-    "editor.formatOnSave": true
+  "cSpell.words": ["pxtorem", "unplugin", "Vant", "vueuse"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

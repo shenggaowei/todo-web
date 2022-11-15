@@ -1,6 +1,8 @@
 <template>
   <div :class="[$style.layout, customClass]">
-    <slot v-if="isMobile"></slot>
+    <div :class="[$style.content]">
+      <slot v-if="isMobile"></slot>
+    </div>
   </div>
 </template>
 
@@ -34,7 +36,14 @@ export default defineComponent({
 
 <style lang="scss" module>
 .layout {
-  margin: 0 auto;
-  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px;
+  background: #f9f9f9;
+}
+
+.content {
+  width: 100%;
+  background: #fff;
 }
 </style>

@@ -1,16 +1,16 @@
-import { createApp } from 'vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
-import configVant from './utils/vant'
-import routes from './router'
-import App from './App.vue'
+import { createApp } from "vue";
+import { createRouter, createWebHashHistory } from "vue-router";
+import configVant from "./utils/vant";
+import routes from "./router";
+import App from "./App.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 
-const app = createApp(App)
+const app = createApp(App);
 
-configVant(app)
+configVant(app);
 
-app.use(router).mount('#app')
+app.use(router).mount("#app");
