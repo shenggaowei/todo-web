@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.4",
     "@vueuse/core": "^9.1.0",
     "axios": "^0.27.2",
     "lodash": "^4.17.21",
+    "uuid": "^9.0.0",
     "vant": "^3.5.2",
     "vue": "^3.2.25",
     "vue-request": "^1.2.4",

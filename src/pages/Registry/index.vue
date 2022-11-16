@@ -1,5 +1,9 @@
-<template>注册页面</template>
+<template>
+  <captcha />
+</template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import Captcha from "@/components/Captcha/index.vue";
+</script>
 
 <style lang="scss" module></style>

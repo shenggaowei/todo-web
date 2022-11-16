@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["pxtorem", "unplugin", "Vant", "vueuse"],
+  "cSpell.words": ["pxtorem", "unplugin", "uuidv", "Vant", "vueuse"],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[vue]": {
