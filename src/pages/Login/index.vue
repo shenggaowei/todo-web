@@ -1,5 +1,5 @@
 <template>
-  <Layout :class="$style.layout">
+  <Layout :wrapper-class="$style.layout" :content-class="$style.content">
     <div :class="$style.logo_box">
       <Logo />
     </div>
@@ -37,6 +37,10 @@
         >
           登录
         </van-button>
+      </div>
+      <div :class="$style.signup_button_box">
+        <span @click="handleClickFindPassword">忘记密码</span>
+        <span @click="handleClickRegistry">注册</span>
       </div>
     </van-form>
   </Layout>
@@ -86,12 +90,21 @@ export default defineComponent({
         router.push("/home");
       }
     };
+
+    const handleClickFindPassword = () => {
+      alert("找回密码");
+    };
+    const handleClickRegistry = () => {
+      router.push("/registry");
+    };
     return {
       userInfo,
       onSubmit,
       loading,
       formRef,
       emitError,
+      handleClickFindPassword,
+      handleClickRegistry,
     };
   },
 });
@@ -99,9 +112,15 @@ export default defineComponent({
 
 <style lang="scss" module>
 .layout {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  padding: 16px;
+}
+
+.content {
+  padding-bottom: 14px;
+  border-radius: 8px;
 }
 
 .logo_box {
@@ -113,9 +132,10 @@ export default defineComponent({
 
 .form {
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #f3f3f3;
   margin: 0 6px;
+  margin-bottom: 30px;
   padding: 40px 44px 26px 40px;
   background: #fff;
 }
@@ -146,5 +166,16 @@ export default defineComponent({
 
 .submit_button {
   border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+.signup_button_box {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-size: 12px;
+    color: #5d7df3;
+  }
 }
 </style>

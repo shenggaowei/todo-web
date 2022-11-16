@@ -1,36 +1,34 @@
 <template>
-  <div :class="[$style.layout, customClass]">
-    <div :class="[$style.content]">
+  <div :class="[$style.layout, props.wrapperClass]">
+    <div :class="[$style.content, props.contentClass]">
       <slot v-if="isMobile"></slot>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onUnmounted, watchEffect } from "vue";
+<script lang="ts" setup>
+import { onUnmounted, watchEffect } from "vue";
 import { Dialog } from "vant";
 import "vant/es/dialog/style";
 import useIsMobile from "@/hooks/useIsMobile";
 import useNavigationGuards from "@/hooks/useNavigationGuards";
 
-export default defineComponent({
-  setup(props, context) {
-    const { class: customClass } = context.attrs;
-    useNavigationGuards();
-    const isMobile = useIsMobile();
-    const stopWatch = watchEffect(() => {
-      if (!isMobile.value) {
-        Dialog({ message: "pc端正在开发中，先用手机打开看看" });
-      }
-    });
-    onUnmounted(() => {
-      stopWatch();
-    });
-    return {
-      customClass,
-      isMobile,
-    };
-  },
+interface ILayoutProps {
+  wrapperClass: string;
+  contentClass: string;
+}
+
+const props = defineProps<ILayoutProps>();
+
+useNavigationGuards();
+const isMobile = useIsMobile();
+const stopWatch = watchEffect(() => {
+  if (!isMobile.value) {
+    Dialog({ message: "pc端正在开发中，先用手机打开看看" });
+  }
+});
+onUnmounted(() => {
+  stopWatch();
 });
 </script>
 
