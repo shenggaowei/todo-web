@@ -26,18 +26,16 @@
           />
         </div>
       </van-cell-group>
-      <div :class="$style.submit_button_box">
-        <van-button
-          :class="$style.submit_button"
-          round
-          block
-          type="primary"
-          @click="onSubmit"
-          :disabled="loading"
-        >
-          登录
-        </van-button>
-      </div>
+      <van-button
+        :class="$style.submit_button"
+        round
+        block
+        type="primary"
+        @click="onSubmit"
+        :disabled="loading"
+      >
+        登录
+      </van-button>
       <div :class="$style.signup_button_box">
         <span @click="handleClickFindPassword">忘记密码</span>
         <span @click="handleClickSignup">注册</span>
