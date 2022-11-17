@@ -40,7 +40,7 @@
       </div>
       <div :class="$style.signup_button_box">
         <span @click="handleClickFindPassword">忘记密码</span>
-        <span @click="handleClickRegistry">注册</span>
+        <span @click="handleClickSignup">注册</span>
       </div>
     </van-form>
   </Layout>
@@ -49,9 +49,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
-import { setStorage } from "@/utils/storage";
+import { setStorage, account_key } from "@/utils/storage";
 import { useSignIn } from "./useService";
-import { account_key } from "@/utils/storage";
 import Layout from "@/components/layout/index.vue";
 import Logo from "./components/Logo.vue";
 import Icon from "@/components/Icon/index.vue";
@@ -94,8 +93,8 @@ export default defineComponent({
     const handleClickFindPassword = () => {
       alert("找回密码");
     };
-    const handleClickRegistry = () => {
-      router.push("/registry");
+    const handleClickSignup = () => {
+      router.push("/Signup");
     };
     return {
       userInfo,
@@ -104,7 +103,7 @@ export default defineComponent({
       formRef,
       emitError,
       handleClickFindPassword,
-      handleClickRegistry,
+      handleClickSignup,
     };
   },
 });

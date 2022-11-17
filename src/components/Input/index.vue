@@ -4,6 +4,7 @@
       $style.input_box,
       inputHandler.inputActive && $style.input_active,
       isShowError && $style.input_error,
+      props.wrapperClass,
     ]"
   >
     <custom-icon
@@ -17,6 +18,7 @@
       :model-value="props.modelValue"
       @change="onChange"
       :name="props.name"
+      :maxlength="props.maxlength"
       :class="$style.input"
       :placeholder="props.placeholder"
       :rules="props.rules ? [props.rules] : undefined"
@@ -46,6 +48,8 @@ interface IInputProps {
   icon: string;
   placeholder: string;
   emitError?: boolean;
+  wrapperClass?: string;
+  maxlength?: number;
 }
 
 //需要注意 defineEmit 中函数的定义方法

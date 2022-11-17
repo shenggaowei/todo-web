@@ -1,21 +1,27 @@
+import { TOrigin } from "@/service/common/interface";
 export interface ISignInParams {
   userName: string;
   password: string;
   phone?: number;
-  origin: "pc" | "mini-app";
+  origin: TOrigin;
 }
 
 export interface ISignInRes {
   token: string;
 }
 
+export interface ISignUpRes {
+  token: string;
+}
+
 export interface ISignUpParams {
   userName: string;
   password: string;
-  phone?: number;
-  origin: "pc" | "mini-app";
+  origin: TOrigin;
+  captcha: string;
+  uuid: string | null;
 }
 
-export interface ISignUpRes {
+export interface ISignupRes {
   token: string;
 }

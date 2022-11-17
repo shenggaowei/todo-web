@@ -1,5 +1,5 @@
 <template>
-  <div v-html="captcha" @click="handleClick"></div>
+  <div v-html="captcha" :class="[props.customClass]" @click="handleClick"></div>
 </template>
 
 <script lang="ts" setup>
@@ -11,7 +11,13 @@ interface ICaptchaProps {
   customClass?: string;
 }
 
-defineProps<ICaptchaProps>();
+interface ICaptchaEmits {
+  (e: "getUuid", value: string | null): void;
+}
+
+const props = defineProps<ICaptchaProps>();
+
+const emit = defineEmits<ICaptchaEmits>();
 
 const captcha = ref<string | null>();
 const getCaptchaHandler = useGetCaptcha();
@@ -19,6 +25,7 @@ const getCaptchaHandler = useGetCaptcha();
 async function getCaptcha() {
   const uuid = getUuid();
   const data = await getCaptchaHandler.run({ uuid });
+  emit("getUuid", uuid);
   return data;
 }
 
@@ -30,6 +37,7 @@ async function handleClick() {
 onMounted(async () => {
   const data = await getCaptcha();
   captcha.value = data;
+  emit("getUuid", data);
 });
 </script>
 

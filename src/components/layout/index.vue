@@ -14,8 +14,8 @@ import useIsMobile from "@/hooks/useIsMobile";
 import useNavigationGuards from "@/hooks/useNavigationGuards";
 
 interface ILayoutProps {
-  wrapperClass: string;
-  contentClass: string;
+  wrapperClass?: string;
+  contentClass?: string;
 }
 
 const props = defineProps<ILayoutProps>();
