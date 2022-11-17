@@ -81,7 +81,7 @@ const formRef = ref<FormInstance>();
 
 const { loading, run } = useSignUp();
 
-const getUuid = (value: string) => {
+const getUuid = (value: string | null) => {
   uuid.value = value;
 };
 
@@ -90,6 +90,9 @@ const onSubmit = async () => {
     await formRef.value?.validate();
   } catch (error) {
     emitError.value = true;
+    return;
+  }
+  if (!uuid.value) {
     return;
   }
   const data = await run({

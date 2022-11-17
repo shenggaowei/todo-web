@@ -14,12 +14,9 @@ declare module '@vue/runtime-core' {
     Logo: typeof import('./src/components/Logo/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Signup: typeof import("./src/components/Registry/index.vue")["default"]
     VanButton: typeof import('vant/es')['Button']
-    VanCalendar: typeof import("vant/es")["Calendar"]
-    VanCell: typeof import("vant/es")["Cell"]
     VanCellGroup: typeof import('vant/es')['CellGroup']
-    VanEmpty: typeof import("vant/es")["Empty"]
+    VanEmpty: typeof import('vant/es')['Empty']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']
   }
