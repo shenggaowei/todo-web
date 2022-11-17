@@ -162,8 +162,8 @@ export default defineComponent({
 }
 
 .submit_button {
-  border-radius: 2px;
-  margin-bottom: 14px;
+  border-radius: 2px !important;
+  margin-bottom: 14px !important;
 }
 
 .signup_button_box {
